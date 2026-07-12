@@ -106,6 +106,9 @@ class AdminPanelProvider extends PanelProvider
                     ->shouldShowBrowserSessionsForm()
                     ->shouldShowAvatarForm(),
             ])
+            ->widgets([
+                \App\Filament\Widgets\NutriKidsStatsWidget::class,
+            ])
             ->resources([
                 config('filament-logger.activity_resource'),
             ])
@@ -122,6 +125,7 @@ class AdminPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
                 \Hasnayeen\Themes\Http\Middleware\SetTheme::class,
             ])
+            
             ->authMiddleware([
                 Authenticate::class,
             ]);

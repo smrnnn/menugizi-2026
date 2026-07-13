@@ -107,7 +107,7 @@ class AdminPanelProvider extends PanelProvider
                     ->shouldShowAvatarForm(),
             ])
             ->widgets([
-                \App\Filament\Widgets\NutriKidsStatsWidget::class,
+                \App\Filament\Admin\Widgets\NutriKidsStatsWidget::class,
             ])
             ->resources([
                 config('filament-logger.activity_resource'),

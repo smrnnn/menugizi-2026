@@ -306,31 +306,51 @@
     {{-- ── KEBUTUHAN GIZI LENGKAP ── --}}
     <div class="bg-white rounded-2xl border border-[#53CBF3] p-5 shadow-sm">
         <h3 class="text-sm font-semibold text-[#111FA2] mb-4">📊 Kebutuhan Gizi Harian (AKG)</h3>
+
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+
             <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                <p class="text-lg font-bold text-[#111FA2]">{{ number_format($analisis['kebutuhan_kalori']) }}</p>
+                <p class="text-lg font-bold text-[#111FA2]">
+                    {{ rtrim(rtrim(number_format($analisis['kebutuhan_kalori'], 2), '0'), '.') }}
+                </p>
                 <p class="text-xs text-gray-400">Energi (kkal)</p>
             </div>
+
             <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                <p class="text-lg font-bold text-[#111FA2]">{{ $analisis['kebutuhan_protein'] }}</p>
+                <p class="text-lg font-bold text-[#111FA2]">
+                    {{ rtrim(rtrim(number_format($analisis['kebutuhan_protein'], 2), '0'), '.') }}
+                </p>
                 <p class="text-xs text-gray-400">Protein (g)</p>
             </div>
+
             <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                <p class="text-lg font-bold text-[#111FA2]">{{ $analisis['kebutuhan_lemak'] }}</p>
+                <p class="text-lg font-bold text-[#111FA2]">
+                    {{ rtrim(rtrim(number_format($analisis['kebutuhan_lemak'], 2), '0'), '.') }}
+                </p>
                 <p class="text-xs text-gray-400">Lemak (g)</p>
             </div>
+
             <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                <p class="text-lg font-bold text-[#111FA2]">{{ $analisis['kebutuhan_karbohidrat'] }}</p>
+                <p class="text-lg font-bold text-[#111FA2]">
+                    {{ rtrim(rtrim(number_format($analisis['kebutuhan_karbohidrat'], 2), '0'), '.') }}
+                </p>
                 <p class="text-xs text-gray-400">Karbo (g)</p>
             </div>
+
             <div class="bg-[#FFFDE8] rounded-xl p-3 text-center border border-[#FFDE42]">
-                <p class="text-lg font-bold text-[#967500]">{{ $analisis['kebutuhan_serat'] }}</p>
+                <p class="text-lg font-bold text-[#967500]">
+                    {{ rtrim(rtrim(number_format($analisis['kebutuhan_serat'], 2), '0'), '.') }}
+                </p>
                 <p class="text-xs text-gray-400">Serat (g)</p>
             </div>
+
             <div class="bg-cyan-50 rounded-xl p-3 text-center border border-cyan-200">
-                <p class="text-lg font-bold text-cyan-600">{{ $analisis['kebutuhan_air'] }}</p>
+                <p class="text-lg font-bold text-cyan-600">
+                    {{ rtrim(rtrim(number_format($analisis['kebutuhan_air'], 2), '0'), '.') }}
+                </p>
                 <p class="text-xs text-gray-400">Air (ml)</p>
             </div>
+
         </div>
     </div>
     @endif
@@ -419,9 +439,25 @@
                 <div class="p-4 flex flex-col h-[calc(100%-9rem)]">
                     <h4 class="text-sm font-semibold text-[#111FA2] leading-tight mb-2 line-clamp-2">{{ $menu['nama'] }}</h4>
                     <div class="flex flex-wrap gap-3 mb-3">
-                        <span class="text-xs text-gray-400"><span class="font-medium text-[#111FA2]">{{ $menu['kalori'] }}</span> kcal</span>
-                        <span class="text-xs text-gray-400">Protein <span class="font-medium text-gray-600">{{ $menu['protein'] }}g</span></span>
-                        <span class="text-xs text-gray-400">Serat <span class="font-medium text-gray-600">{{ $menu['serat'] ?? 0 }}g</span></span>
+                        <span class="text-xs text-gray-400">
+                            <span class="font-medium text-[#111FA2]">
+                                {{ rtrim(rtrim(number_format($menu['kalori'], 2), '0'), '.') }}
+                            </span> kkal
+                        </span>
+
+                        <span class="text-xs text-gray-400">
+                            Protein
+                            <span class="font-medium text-gray-600">
+                                {{ rtrim(rtrim(number_format($menu['protein'], 2), '0'), '.') }} g
+                            </span>
+                        </span>
+
+                        <span class="text-xs text-gray-400">
+                            Serat
+                            <span class="font-medium text-gray-600">
+                                {{ rtrim(rtrim(number_format($menu['serat'] ?? 0, 2), '0'), '.') }} g
+                            </span>
+                        </span>
                     </div>
 
                     <div class="mb-3 min-h-[24px]">
@@ -441,7 +477,7 @@
 
                     <button wire:click="lihatDetail({{ $menu['id'] }})"
                             class="mt-auto w-full text-xs font-medium text-[#111FA2] border border-[#5478FF] rounded-lg py-2 hover:bg-[#EEF2FF] transition">
-                        👀 Lihat detail →
+                        Lihat detail →
                     </button>
                 </div>
             </div>
@@ -514,39 +550,63 @@
 
             <div>
                 <p class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-3">Kandungan gizi per sajian</p>
+
                 <div class="grid grid-cols-3 sm:grid-cols-4 gap-2">
                     <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                        <p class="text-sm font-semibold text-[#111FA2]">{{ $menuDetail['kalori'] }}</p>
-                        <p class="text-xs text-gray-400">kcal</p>
+                        <p class="text-sm font-semibold text-[#111FA2]">
+                            {{ rtrim(rtrim(number_format($menuDetail['kalori'], 2), '0'), '.') }}
+                        </p>
+                        <p class="text-xs text-gray-400">kkal</p>
                         <p class="text-xs text-gray-400 mt-1">Kalori</p>
                     </div>
+
                     <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                        <p class="text-sm font-semibold text-[#111FA2]">{{ $menuDetail['protein'] }}</p>
+                        <p class="text-sm font-semibold text-[#111FA2]">
+                            {{ rtrim(rtrim(number_format($menuDetail['protein'], 2), '0'), '.') }}
+                        </p>
                         <p class="text-xs text-gray-400">g</p>
                         <p class="text-xs text-gray-400 mt-1">Protein</p>
                     </div>
+
                     <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                        <p class="text-sm font-semibold text-[#111FA2]">{{ $menuDetail['lemak'] }}</p>
+                        <p class="text-sm font-semibold text-[#111FA2]">
+                            {{ rtrim(rtrim(number_format($menuDetail['lemak'], 2), '0'), '.') }}
+                        </p>
                         <p class="text-xs text-gray-400">g</p>
                         <p class="text-xs text-gray-400 mt-1">Lemak</p>
                     </div>
+
                     <div class="bg-[#EEF2FF] rounded-xl p-3 text-center">
-                        <p class="text-sm font-semibold text-[#111FA2]">{{ $menuDetail['karbohidrat'] }}</p>
+                        <p class="text-sm font-semibold text-[#111FA2]">
+                            {{ rtrim(rtrim(number_format($menuDetail['karbohidrat'], 2), '0'), '.') }}
+                        </p>
                         <p class="text-xs text-gray-400">g</p>
                         <p class="text-xs text-gray-400 mt-1">Karbo</p>
                     </div>
+
                     <div class="bg-[#FFFDE8] rounded-xl p-3 text-center border border-[#FFDE42]">
-                        <p class="text-sm font-semibold text-[#967500]">{{ $menuDetail['serat'] ?? 0 }}</p>
+                        <p class="text-sm font-semibold text-[#967500]">
+                            {{ rtrim(rtrim(number_format($menuDetail['serat'] ?? 0, 2), '0'), '.') }}
+                        </p>
                         <p class="text-xs text-gray-400">g</p>
                         <p class="text-xs text-gray-400 mt-1">Serat</p>
                     </div>
+
                     <div class="bg-cyan-50 rounded-xl p-3 text-center border border-cyan-200">
-                        <p class="text-sm font-semibold text-cyan-600">{{ $menuDetail['air'] ?? 0 }}</p>
+                        <p class="text-sm font-semibold text-cyan-600">
+                            {{ rtrim(rtrim(number_format($menuDetail['air'] ?? 0, 2), '0'), '.') }}
+                        </p>
                         <p class="text-xs text-gray-400">ml</p>
                         <p class="text-xs text-gray-400 mt-1">Air</p>
                     </div>
                 </div>
-                <p class="text-xs text-gray-400 mt-2">Zat besi: <span class="font-medium text-gray-600">{{ $menuDetail['zat_besi'] }} mg</span></p>
+
+                <p class="text-xs text-gray-400 mt-2">
+                    Zat besi:
+                    <span class="font-medium text-gray-600">
+                        {{ rtrim(rtrim(number_format($menuDetail['zat_besi'], 2), '0'), '.') }} mg
+                    </span>
+                </p>
             </div>
 
             <div>
